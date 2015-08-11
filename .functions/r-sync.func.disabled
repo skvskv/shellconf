@@ -1,0 +1,23 @@
+#!/bin/bash
+
+
+function _rsync_homedir(){
+    echo "Now syncing ${HOME} ..."
+    sudo rsync -avzpogcHAX -e 'ssh -l root -i /home/ubuntu/.ssh/id_rsa' --progress --max-delete=0 /home/ubuntu/ root@djakudza.ru:/home/ubuntu/RTSTOPP-RSYNCed/home/ubuntu
+}
+
+function _rsync_var(){
+    echo "Now syncing /var ..."
+    sudo rsync -avzpogcHAX -e 'ssh -l root -i /home/ubuntu/.ssh/id_rsa' --progress --max-delete=0 /var/ root@djakudza.ru:/home/ubuntu/RTSTOPP-RSYNCed/var
+}
+
+function _rsync_etc(){
+    echo "Now syncing /etc ..."
+    sudo rsync -avzpogcHAX -e 'ssh -l root -i /home/ubuntu/.ssh/id_rsa' --progress --max-delete=0 /etc/ root@djakudza.ru:/home/ubuntu/RTSTOPP-RSYNCed/etc
+}
+
+function rsync_all(){
+    _rsync_etc;
+    _rsync_homedir;
+    _rsync_var;
+}

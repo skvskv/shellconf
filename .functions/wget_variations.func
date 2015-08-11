@@ -1,0 +1,9 @@
+#!/bin/bash
+
+function get(){
+	wget -c -t 0 -T 10 "$@"
+}
+
+#function wget(){
+#	${HOME}/.executables/wget "$@"
+#}

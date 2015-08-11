@@ -1,0 +1,29 @@
+#!/bin/bash            # sha-bang is needed to have syntax highlighting in various editors
+
+function cd_if_exist(){
+	if test -d "$1"; then
+		cd "$1";
+		return 0;
+	else
+		return 1;
+	fi
+}
+
+function md_and_cd(){
+	if test -e "q" -a ! -d "q"; then
+		echo -e "\t$1 exists and is NOT a directory "
+		return 1
+	else
+		mkdir -p "$1"
+		cd_if_exist "$1"
+	fi
+}
+
+function mdcd(){
+	if test x"$1" = x""; then
+		echo -e "No directory name specified."
+		return 2;
+	else
+		md_and_cd "$1"
+	fi
+}

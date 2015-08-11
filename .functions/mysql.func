@@ -1,0 +1,11 @@
+#!/bin/bash
+
+function mydb(){
+    mysql --user=admin --password=FrankKulle67 $*
+}
+
+function mydump(){
+    mysqldump  --user=admin --password=FrankKulle67 --skip-extended-insert --skip-quick $*
+
+}
+

@@ -1,0 +1,16 @@
+#!/bin/bash
+
+PRINTABLE_LATIN=""
+
+get_printable_chars_ascii_latin(){
+    for (( i=32; i<127; i=$((i+1)) )); do echo -ne "\x`printf "%x" $i`" ; done
+}
+
+strip_printable(){
+    echo 1 > /dev/null
+}
+
+
+strip_non_printable(){
+    echo 1 > /dev/null
+}

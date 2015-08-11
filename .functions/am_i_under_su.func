@@ -1,0 +1,20 @@
+#!/bin/bash            # sha-bang is needed to have syntax highlighting in various editors
+
+
+function myname(){
+	who are you | awk '{ print $1 }'
+}
+
+function myuid(){
+	id -u `myname`
+}
+
+function am_i_under_su(){
+	if test `id -u` -eq `myuid`; then
+		echo "No, you're not."
+		return 1 
+	else
+		echo "Yes, you are."
+		return 0
+	fi
+}

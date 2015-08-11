@@ -1,0 +1,7 @@
+#!/bin/bash
+
+unset $A ;
+
+[ -z $A ]; echo -e "\t [ -z \$A ] : $?"
+
+[ -n $A ]; echo -e "\t [ -n \$A ] : $?"

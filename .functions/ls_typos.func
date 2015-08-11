@@ -1,0 +1,18 @@
+#!/bin/bash            # sha-bang is needed to have syntax highlighting in various editors
+
+
+function ls-la(){
+    ls -la "$@"
+}
+
+function ls-(){
+	ls -"$@"
+}
+
+function sl(){
+	ls "$@"
+}
+
+function sl-(){
+	ls -"$@"
+}

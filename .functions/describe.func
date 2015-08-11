@@ -1,0 +1,9 @@
+#!/bin/bash
+
+function describe(){
+    echo "describe " "$*" | mydb
+}
+
+function tables(){
+    echo "show tables " "$*" | mydb
+}

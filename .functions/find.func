@@ -1,0 +1,44 @@
+#!/bin/bash
+
+# efind <directory> <filemask> [<text-in-file>]
+
+function efind(){
+	/bin/cat /dev/null > /dev/null;
+	case $# in 
+		2)
+			__find_filemask_in_directory "$@"
+		;;
+		3)
+			__find_content_filemask_in_directory "$@"
+		;;
+		*)
+
+		;;
+	esac
+}
+
+
+function __efind_usage(){
+	echo -e "Usage: "
+	echo -e "efind <directory> <filemask> [<text-in-file>]\n"
+	echo -e "\t<filemask> is a posix-egrep regexp mask"
+	echo -e "\t<text-in-file> is a posix-egrep regexp mask"
+}
+
+function __find_content_filemask_in_directory(){
+        SPATH="$1"
+        MASK="$2"
+	SEARCHSTR="$3"
+        /usr/bin/find "$SPATH" -regextype posix-egrep -type f -iregex "$MASK" -exec grep -iE "$SEARCHSTR" '{}' \; -print
+}
+
+function __find_filemask_in_directory(){
+	SPATH="$1"
+	MASK="$2"
+	/usr/bin/find "$SPATH" -regextype posix-egrep -type f -iregex "$MASK"
+	#echo /usr/bin/find -H "$SPATH" -regextype posix-egrep -type f -iregex $MASK -print
+	#/usr/bin/find -H "$SPATH" -regextype posix-egrep -type f -iregex "$MASK"
+}
+
+
+#find . -regextype posix-egrep -type f -iregex '.+\.js' -exec grep -iE 'sListView.check_entire_list' '{}' \; -print

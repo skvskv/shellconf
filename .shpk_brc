@@ -1,0 +1,52 @@
+#!/bin/bash - sha-bang is needed to have syntax highlighting in various editors
+
+## Speak English to me, please, due to your Russian is awful.
+#export LANG="en_US.UTF-8"
+##  For apache testconfig to operate properly
+    export APACHE_USER="www-data"
+##  DISPLAY setting:
+#    export DISPLAY="10.3.7.45:0.0"
+
+
+
+## Legacy inclusion, might come in hand as concept
+    if [ -r ${HOME}/.server_aliases_ixtens ]; then
+	. ${HOME}/.server_aliases_ixtens
+    fi
+PATH="$PATH:/opt/mule-standalone-3.5.0/bin"
+## set PATH so it includes user's private bin and (so forth) if it exists
+    if [ -d "$HOME/bin" ] ; then
+	PATH="$HOME/bin:$PATH"
+    fi
+    if [ -d "$HOME/PhpStorm-133.982/bin" ] ; then
+	PATH="$HOME/PhpStorm-133.982/bin:$PATH"
+    fi
+## Please let me use my local scripts or otherwise executable files
+    if [ -d "$HOME/.executables/" ] ; then
+        PATH="$HOME/.executables/:$PATH"
+    fi
+## ...and functions, also
+    if test -d "${HOME}/.functions"; then
+    	for i in ${HOME}/.functions/*.func; do
+    		. ${i}
+    	done
+    fi
+
+
+
+
+
+alias getip="dig +short "
+alias getn="dig +short -x "
+# unalias ls
+alias ls="ls --color=auto --show-control-chars --group-directories-first"
+alias vir='vi -R'
+#alias mce='mcedit '
+#alias mysql='mysql --user=root --password=10eg2kpIFZ '
+
+## git aliases:
+alias gs='git status'
+alias gc='git commit'
+alias gl='git log'
+alias gls='git log --summary'
+

@@ -1,0 +1,32 @@
+#!/bin/bash            # sha-bang is needed to have syntax highlighting in various editors
+
+
+#exit 1;
+
+START_MARKER="start-marker"
+STOP_MARKER="stop-marker"
+
+function __cutlog_parse_args(){
+	case $# in
+		2)
+			START_MARKER="$1"
+			STOP_MARKER="$2"
+			return 0
+		;;
+		*)
+			echo -e "The function requires two arguments: start-marker, stop-marker"
+			return 1
+		;;
+	esac
+}
+
+function cutlog_awk(){
+	if __cutlog_parse_args "$@" ; then
+		cat | awk 'begin {flag = 0 }; $0 ~ /${START_MARKER}/ {flag =1 }; $0 ~ /${STOP_MARKER}/ {flag =0}; {if (flag == 1) {print $0}} '
+	else
+		return 1;
+	fi
+}
+
+# cat | awk 'begin {flag = 0 }; $0 ~ /${START_MARKER}/ {flag =1 }; $0 ~ /${STOP_MARKER}/ {flag =0}; {if (flag == 1) {print $0}} '
+

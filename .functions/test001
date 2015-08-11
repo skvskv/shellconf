@@ -1,0 +1,33 @@
+#!/bin/bash
+
+function getvars(){
+	env | grep -i 'proxy'
+}
+
+function wsetvars(){
+wget_http_proxy="http://127.0.0.1:8888"
+wget_https_proxy="http://127.0.0.1:8888"
+wget_ftp_proxy="http://127.0.0.1:8888"
+wget_ftps_proxy="http://127.0.0.1:8888"
+wget_sftp_proxy="http://127.0.0.1:8888"
+}
+
+function wexpvars(){
+export wget_http_proxy="http://127.0.0.1:8888"
+export wget_https_proxy="http://127.0.0.1:8888"
+export wget_ftp_proxy="http://127.0.0.1:8888"
+export wget_ftps_proxy="http://127.0.0.1:8888"
+export wget_sftp_proxy="http://127.0.0.1:8888"
+}
+
+function wprintvars(){
+echo $wget_http_proxy
+echo $wget_https_proxy
+echo $wget_ftp_proxy
+}
+
+function wmodvars(){
+        export `env | egrep -i 'wget(.+?)proxy' | sed 's/wget_//g'`     # Pick a 'wget_<protocol>_proxy' and re-export as <protocol>_proxy
+                                                                        # Also would ingest wget_no_proxy and re-export as no_proxy
+}
+
