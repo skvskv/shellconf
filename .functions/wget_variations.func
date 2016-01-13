@@ -4,6 +4,15 @@ function get(){
 	wget -c -t 0 -T 10 "$@"
 }
 
+function wgetk(){
+        wget --no-check-certificate "$@"
+}
+
+function getk(){
+        wget --no-check-certificate -c -t 0 -T 10 "$@"
+}
+
+
 #function wget(){
 #	${HOME}/.executables/wget "$@"
 #}

@@ -1,11 +1,96 @@
 #!/bin/bash
 
 function mydb(){
-    mysql --user=admin --password=FrankKulle67 $*
+    mysql --user=root -p$(cat ~/.etc/.psa/.psa.shadow) $*
 }
 
 function mydump(){
-    mysqldump  --user=admin --password=FrankKulle67 --skip-extended-insert --skip-quick $*
+    mysqldump  --user=root -p$(cat ~/.etc/.psa/.psa.shadow) --skip-extended-insert --skip-quick $*
+}
+
+function myCreateDatabaseAndUser()
+{
+    case $# in 
+	1)
+	    _myCreateDatabaseAndUser "$1" "$1" "kte123"
+	;;
+	2)
+	    _myCreateDatabaseAndUser "$1" "$2" "kte123"
+	;;
+	3)
+	    _myCreateDatabaseAndUser "$1" "$2" "$3"
+	;;
+	*)
+	    echo "Buzz off, dude! Gimme <Database Name> [ and <User Name> [ and <User Password>]]!"
+	;;
+    esac
+}
+
+function _myCreateDatabaseAndUser()
+{
+    # Gimme <Database Name> [ and <User Name> [ and <User Password>]]
+    dbName="$1"
+    uName="$2"
+    uPass="$3"
+    _myCreateDatabase $dbName | mydb
+    _myCreateUser $uName $uPass | mydb
+    _myGrantUserPermission $uName $dbName | mydb
+}
+
+function _myCreateDatabase()
+{
+    createDatabaseTemplate='CREATE DATABASE IF NOT EXISTS `{%dbName%}` CHARACTER SET utf8 COLLATE utf8_general_ci;'
+    case $# in
+	1)
+	    dbName="$1";
+	    echo $createDatabaseTemplate | sed 's/{\%dbName\%}/'"$dbName"'/ig' #| mydb
+	;;
+	*)
+	    echo "Buzz off, dude! Gimme dbName!";
+	;;
+    esac
+}
+
+function _myCreateUser()
+{
+    createUserTemplate="CREATE USER '{%userName%}'@'localhost' IDENTIFIED BY '{%userPass%}';"
+#    createUserTemplate="CREATE USER '{%userName%}'@'localhost' IDENTIFIED BY 'kte123';"
+    case $# in
+        1)
+	    userName="$1";
+	    userPass="kte123";
+	    echo $createUserTemplate | sed 's/{\%userName\%}/'"$userName"'/ig' | sed 's/{\%userPass\%}/'"$userPass"'/ig' #| mydb
+        ;;
+        2)
+            userName="$1";
+            userPass="$2";
+	    echo $createUserTemplate | sed 's/{\%userName\%}/'"$userName"'/ig' | sed 's/{\%userPass\%}/'"$userPass"'/ig' #| mydb
+        ;;
+        *)
+	    echo "Buzz off, dude! Gimme userName [and userPassword] !";
+        ;;
+    esac
+
+}
+
+function _myGrantUserPermission()
+{
+    grantPermissionTemplate="GRANT ALL PRIVILEGES ON "'`{%dbName%}`'".* TO '{%userName%}'@'localhost'; FLUSH PRIVILEGES;"
+    case $# in
+        1)
+	    userName="$1"
+	    dbName="$1"
+	    echo $grantPermissionTemplate | sed 's/{\%userName\%}/'"$userName"'/ig' | sed 's/{\%dbName\%}/'"$dbName"'/ig' #| mydb
+        ;;
+        2)
+	    userName="$1"
+	    dbName="$2"
+	    echo $grantPermissionTemplate | sed 's/{\%userName\%}/'"$userName"'/ig' | sed 's/{\%dbName\%}/'"$dbName"'/ig' #| mydb
+        ;;
+        *)
+	    echo "Buzz off, dude! Gimme userName [and dbName]!";
+        ;;
+    esac
 
 }
 

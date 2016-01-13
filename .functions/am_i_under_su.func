@@ -6,11 +6,11 @@ function myname(){
 }
 
 function myuid(){
-	id -u `myname`
+	id -u $(myname)
 }
 
 function am_i_under_su(){
-	if test `id -u` -eq `myuid`; then
+	if test $(id -u) -eq $(myuid); then
 		echo "No, you're not."
 		return 1 
 	else

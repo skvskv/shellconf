@@ -1,0 +1,4 @@
+`ls -la` alternative showing file/dir modes in both ls-like and chmod-like (numeric) format
+    stat --printf="%A\t%a\t%h\t%U\t%G\t%s\t%.19y\t%n\n" *
+
+
