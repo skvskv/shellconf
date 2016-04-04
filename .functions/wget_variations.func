@@ -12,6 +12,11 @@ function getk(){
         wget --no-check-certificate -c -t 0 -T 10 "$@"
 }
 
+function wgoget()
+{
+    wget --no-check-certificate -e robots=off --user-agent=Mozilla/5.0 -t 0 -T 10 "$@" #--reject="index.*htm*"
+}
+
 
 #function wget(){
 #	${HOME}/.executables/wget "$@"
