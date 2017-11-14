@@ -122,3 +122,8 @@ fi
 if [ -r ${HOME}/.shpk_brc ]; then
     . ${HOME}/.shpk_brc
 fi
+
+## And this too:
+if [ -r ${HOME}/.composer_brc ]; then
+    . ${HOME}/.composer_brc
+fi
