@@ -45,11 +45,13 @@ alias vir='vi -R'
 #alias mysql='mysql --user=root --password=10eg2kpIFZ '
 
 ## git aliases:
-alias gs='git status '
+alias gs='git status -sb'
 alias gc='git commit '
 alias gl='git log '
-alias gls='git log --summary --name-status --graph'
+alias gls='git log --summary --name-status --graph --numstat --decorate --abbrev-commit'
 alias gbn='git checkout -b '
 alias gbl='git branch --list '
 alias gbla='git branch --list -a '
 alias gblr='git branch --list -r '
+alias git-autopush='$(git push 2>&1 | grep "git push")'
+

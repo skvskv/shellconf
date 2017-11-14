@@ -1,27 +1,26 @@
 #!/bin/bash
 
 function rest-options() {
-  curl -ki  "$@" -X OPTIONS -H 'Accept: application/json'
+  curl -k -sS -D /dev/stderr "$@" -X OPTIONS -H 'Accept: application/json'
 }
 
 function rest-get() {
-  curl -ki  "$@" -X GET -H 'Accept: application/json'
+  curl -k -sS -D /dev/stderr "$@" -X GET -H 'Accept: application/json'
 }
 
 function rest-HEAD() {
-  curl -ki "$@" -X HEAD -H 'Accept: application/json'
+  curl -k -sS -D /dev/stderr "$@" -X HEAD -H 'Accept: application/json'
 }
 
 function rest-post() {
-  curl -ki  "$@" -X POST -H 'Accept: application/json' -H 'Content-type: application/json'
+  curl -k -sS -D /dev/stderr "$@" -X POST -H 'Accept: application/json' -H 'Content-type: application/json'
 }
 
 function rest-put() {
-  curl -ki "$@" -X PUT -H 'Accept: application/json' -H 'Content-type: application/json'
+  curl -k -sS -D /dev/stderr "$@" -X PUT -H 'Accept: application/json' -H 'Content-type: application/json'
 }
 
 function rest-delete() {
-  curl -ki "$@" -X DELETE -H 'Accept: application/json'
+  curl -k -sS -D /dev/stderr "$@" -X DELETE -H 'Accept: application/json'
 }
 
-  
