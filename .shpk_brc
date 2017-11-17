@@ -44,14 +44,27 @@ alias vir='vi -R'
 #alias mce='mcedit '
 #alias mysql='mysql --user=root --password=10eg2kpIFZ '
 
-## git aliases:
-alias gs='git status -sb'
-alias gc='git commit '
-alias gl='git log '
-alias gls='git log --summary --name-status --graph --numstat --decorate --abbrev-commit'
-alias gbn='git checkout -b '
-alias gbl='git branch --list '
-alias gbla='git branch --list -a '
-alias gblr='git branch --list -r '
-alias git-autopush='$(git push 2>&1 | grep "git push")'
+## Pretty-printing JSON 
+if which jq >/dev/null
+then
+  alias jqq='jq '\''.'\'' '
+fi
+if which python >/dev/null
+then
+  alias jsonpp='python -m json.tool'
+fi
 
+## git aliases:
+if which git >/dev/null
+then
+  alias gti='git '
+  alias gs='git status -sb'
+  alias gc='git commit '
+  alias gl='git log '
+  alias gls='git log --summary --name-status --graph --numstat --decorate --abbrev-commit'
+  alias gbn='git checkout -b '
+  alias gbl='git branch --list '
+  alias gbla='git branch --list -a '
+  alias gblr='git branch --list -r '
+  alias git-autopush='$(git push 2>&1 | grep "git push")'
+fi
