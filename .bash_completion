@@ -1,0 +1,14 @@
+# The file is read by bash-completion automatically
+# Still chances are you might want to source it from your .bashrc
+#
+# https://github.com/scop/bash-completion/blob/master/README.md
+#
+
+if [ -d ~/bash_completion.d ]
+then
+	for fn in ~/bash_completion.d/*.bash
+	do
+		. "${fn}" 
+	done	
+fi
+
