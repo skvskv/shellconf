@@ -1,0 +1,18 @@
+## A CODEOWNERS file uses a pattern that follows the same rules used in gitignore files. 
+## The pattern is followed by one or more GitHub usernames or team names using the standard @username or @org/team-name format. 
+## You can also refer to a user by an email address that has been added to their GitHub account, for example user@example.com.
+##
+## Each CODEOWNERS file assigns the code owners for a single branch in the repository. Thus, you can assign different code owners for 
+## different branches.
+## 
+## For code owners to receive review requests, the CODEOWNERS file must be on the base branch of the pull request. 
+## For example, if you assign @octocat as the code owner for .js files on the gh-pages branch of your repository, 
+## @octocat will receive review requests when a pull request with changes to .js files is opened between the head branch and gh-pages
+##
+## Learn more at https://help.github.com/articles/about-codeowners/
+##
+
+
+# These owners will be the default owners for everything in the repo. And, unless a later match takes precedence, 
+# will be requested for review when someone opens a pull request.
+*       @skvskv

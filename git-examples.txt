@@ -1,0 +1,158 @@
+# Save branch history and revert easily
+git merge --no-ff
+git revert -m 1 <hash>
+
+# Show n lines of context around diff lines instead of the usual +/- 3
+git diff -U<n>
+
+# Check which branches are merged
+git branch --merged
+
+# Delete obsolete branches
+git branch --merged | xargs git branch -d
+
+# Find something in git history
+git rev-list --all | xargs git grep '<REGEX>'
+git rev-list --all | xargs git grep -F '<STRING>'
+
+# Fetch a file from another branch without changing your current branch
+git checkout <OTHER_BRANCH> -- path/to/file
+
+# See which branches had the latest commits
+git for-each-ref --sort=-committerdate --format='%(refname:short) %(committerdate:short)'
+
+# Git autocorrect
+git config --global help.autocorrect 1
+
+# Git autocomplete https://raw.github.com/git/git/master/contrib/completion/git-completion.bash
+
+# Strip whitespaces
+* filter=stripWhitespace
+*.scala filter=stripWhitespace
+git config filter.stripWhitespace.clean strip_whitespace
+
+#!/usr/bin/env ruby
+STDIN.readlines.each do |line|
+  puts line.rstrip
+end
+
+# Gives you all the objects that aren't referenced by any other object (orphans).
+git fsck --full
+
+# Nice colored log
+git log --oneline --decorate
+
+# Highlight word changes in diff
+git diff --word-diff
+
+# Pro git status
+git status -sb
+
+# Autotrack branches
+git config --global push.default tracking
+
+# Pull with rebase, not merge
+git pull --rebase
+git config branch.master.rebase true
+git config --global branch.autosetuprebase always
+
+# Find out which branch has a specific change
+git branch --contains [SHA-1]
+
+# Check which changes from a branch are already upstream
+git cherry -v master
+
+# Show the last commit with matching message
+git show :/regex
+
+# More cautious git blame
+git blame -w  # ignores white space
+git blame -M  # ignores moving text
+git blame -C  # ignores moving text into other files
+
+# Stop tracking a file without deleting it
+git update-index --assume-unchanged file.name
+
+# Compact, colorized git log
+git log --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+
+# Remove all deleted files from Git
+git rm $(git ls-files --deleted)
+
+# Colorized git log with showing of changed files
+git log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+
+# Show file history
+git log -u [filename]
+
+# Show someone's work for last day
+git log --committer=olegafx@live.com --pretty=format:"%Cgreen%ar (%h)%n%Creset> %s %b%n" --since="${1:-'1 day ago'}" --no-merges
+
+# Visualize git log
+git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"
+
+# Search for a text in git commits
+git log -Stext
+
+# Show git root path
+git rev-parse --show-toplevel
+
+# Stage deletions when adding stuff from the current directory to the index
+git add -u
+
+# Add all files to git honoring .gitignore
+git add '*'
+
+# Add everything and stage deletions starting from the current directory
+git add -A
+
+# Disable colors when the output is not used for a terminal
+%C(auto,blue)Hello%C(auto,reset)
+
+# Ancestry graph in git log with combined diff output
+git log -p --cc --graph
+
+# Track remote git branch as local
+git checkout --track [branch]
+
+
+
+# Git aliases
+
+ds = diff --staged      # git ds - diff your staged changes == review before committing.
+st = status -sb         # smarter status - include tag and branch info
+fup = log --since '1 day ago' --oneline --author <YOUR_EMAIL>  # I know what you did yesterday - great for follow-ups
+ls = log --pretty=format:"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]" --decorate --date=short  # pretty one-line log with tags, branches and authors
+lsv = log --pretty=format:"%C(yellow)%h %C(blue)%ad%C(red)%d %C(reset)%s%C(green) [%cn]" --decorate --date=short --numstat    # a verbose ls, shows changed files too
+
+# some resets without explanation
+r = reset
+r1 = reset HEAD^
+r2 = reset HEAD^^
+rh = reset --hard
+rh1 = reset HEAD^ --hard
+rh2 = reset HEAD^^ --hard
+
+# basic shortcuts
+cp = cherry-pick
+cl = clone
+ci = commit
+co = checkout
+br = branch 
+diff = diff --word-diff
+dc = diff --cached
+
+# stash shortcuts
+sl = stash list
+sa = stash apply
+ss = stash save
+
+# log related - thanks to @mwd410
+l = log 
+lh = log --graph
+la = !git lh --date-order --all 2> /dev/null
+lb = log --graph --simplify-by-decoration
+lba = !git lb --all 
+h = !git --no-pager log --graph -n 15
+a = !git --no-pager la -n 15
+
