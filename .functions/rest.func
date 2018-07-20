@@ -1,26 +1,55 @@
 #!/bin/bash
 
+
+# -H 'Cookie: XDEBUG_SESSION=ksh_SPORTLEVEL'
+
 function rest-options() {
-  curl -k -sS -D /dev/stderr "$@" -X OPTIONS -H 'Accept: application/json'
+  curl -w '%{time_starttransfer}\n' -k -sS -D /dev/stderr "$@" -X OPTIONS -H 'Accept: application/json'
 }
 
 function rest-get() {
-  curl -k -sS -D /dev/stderr "$@" -X GET -H 'Accept: application/json'
+  curl -w '%{time_starttransfer}\n' -k -sS -D /dev/stderr "$@" -X GET -H 'Accept: application/json'
 }
 
 function rest-HEAD() {
-  curl -k -sS -D /dev/stderr "$@" -X HEAD -H 'Accept: application/json'
+  curl -w '%{time_starttransfer}\n' -k -sS -D /dev/stderr "$@" -X HEAD -H 'Accept: application/json'
 }
 
 function rest-post() {
-  curl -k -sS -D /dev/stderr "$@" -X POST -H 'Accept: application/json' -H 'Content-type: application/json'
+  curl -w '%{time_starttransfer}\n' -k -sS -D /dev/stderr "$@" -X POST -H 'Accept: application/json' -H 'Content-type: application/json'
 }
 
 function rest-put() {
-  curl -k -sS -D /dev/stderr "$@" -X PUT -H 'Accept: application/json' -H 'Content-type: application/json'
+  curl -w '%{time_starttransfer}\n' -k -sS -D /dev/stderr "$@" -X PUT -H 'Accept: application/json' -H 'Content-type: application/json'
 }
 
 function rest-delete() {
-  curl -k -sS -D /dev/stderr "$@" -X DELETE -H 'Accept: application/json'
+  curl -w '%{time_starttransfer}\n' -k -sS -D /dev/stderr "$@" -X DELETE -H 'Accept: application/json'
+}
+
+
+
+function rest-options-dev() {
+  curl -H 'Cookie: XDEBUG_SESSION=ksh_SPORTLEVEL' -k -sS -D /dev/stderr "$@" -X OPTIONS -H 'Accept: application/json'
+}
+
+function rest-get-dev() {
+  curl -H 'Cookie: XDEBUG_SESSION=ksh_SPORTLEVEL' -k -sS -D /dev/stderr "$@" -X GET -H 'Accept: application/json'
+}
+
+function rest-HEAD-dev() {
+  curl -H 'Cookie: XDEBUG_SESSION=ksh_SPORTLEVEL' -k -sS -D /dev/stderr "$@" -X HEAD -H 'Accept: application/json'
+}
+
+function rest-post-dev() {
+  curl -H 'Cookie: XDEBUG_SESSION=ksh_SPORTLEVEL' -k -sS -D /dev/stderr "$@" -X POST -H 'Accept: application/json' -H 'Content-type: application/json'
+}
+
+function rest-put-dev() {
+  curl -H 'Cookie: XDEBUG_SESSION=ksh_SPORTLEVEL' -k -sS -D /dev/stderr "$@" -X PUT -H 'Accept: application/json' -H 'Content-type: application/json'
+}
+
+function rest-delete-dev() {
+  curl -H 'Cookie: XDEBUG_SESSION=ksh_SPORTLEVEL' -k -sS -D /dev/stderr "$@" -X DELETE -H 'Accept: application/json'
 }
 
