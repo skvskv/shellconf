@@ -18,8 +18,8 @@ PATH="$PATH:/opt/mule-standalone-3.5.0/bin"
     if [ -d "$HOME/bin" ] ; then
 	PATH="$HOME/bin:$PATH"
     fi
-    if [ -d "$HOME/PhpStorm-133.982/bin" ] ; then
-	PATH="$HOME/PhpStorm-133.982/bin:$PATH"
+    if [ -d "$HOME/go/bin" ] ; then
+	PATH="$HOME/go/bin:$PATH"
     fi
 ## Please let me use my local scripts or otherwise executable files
     if [ -d "$HOME/.executables/" ] ; then
@@ -60,6 +60,7 @@ then
   alias gti='git '
   alias gs='git status -sb'
   alias gc='git commit '
+  alias gco='git checkout '
   alias gl='git log '
   alias gls='git log --summary --name-status --graph --numstat --decorate --abbrev-commit'
   alias gbn='git checkout -b '
