@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 WP_DIST_URL='https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar'
-WP_DIST_BCOMP_URL='https://raw.githubusercontent.com/wp-cli/wp-cli/master/utils/wp-completion.bash'
+WP_DIST_BCOMP_URL='https://raw.githubusercontent.com/wp-cli/wp-cli/v1.5.1/utils/wp-completion.bash'
 WP_CLI_PATHNAME=$(command -v wp)
 IS_WP_CLI_INSTALLED=$?
 
