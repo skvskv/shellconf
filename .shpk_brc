@@ -65,6 +65,7 @@ PATH="$PATH:/opt/mule-standalone-3.5.0/bin"
 
 
 
+alias man='man -P "less -I -j 6" '
 alias getip="dig +short "
 alias getn="dig +short -x "
 alias vir='vi -R'
@@ -79,14 +80,34 @@ fi
 
 #alias mysql='mysql --user=root --password=10eg2kpIFZ '
 
-## Pretty-printing JSON 
-if command -v jq >/dev/null
+if command -v python >>/dev/null 2>&1
 then
-  alias jqq='jq '\''.'\'' '
+    __shell_python_available='Y'
+    __shell_python_version=$(python --version 2>&1 | grep -oE '[0-9.]+')
+else
+    __shell_python_available='N'
+    __shell_python_version='N/A'
 fi
-if command -v python >/dev/null
+
+if command -v jq >>/dev/null 2>&1
 then
-  alias jsonpp='python -m json.tool'
+    __shell_jq_available='Y'
+    __shell_jq_version=$(jq --version)
+else
+    __shell_jq_available='N'
+    __shell_jq_version='N/A'
+fi
+
+## Pretty-printing JSON: jq and jsonpp
+if test 'z'${__shell_jq_available} = 'z''Y'
+then
+    alias jqq='jq '\''.'\'' '
+fi
+
+if [ z${__shell_python_available} = z'Y' ]
+then
+    alias jsonpp='python -m json.tool'
+    alias urldecode='python -c "import sys, urllib as ul; print ul.unquote(sys.stdin.read());"'
 fi
 
 ## git aliases:
