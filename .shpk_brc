@@ -1,4 +1,4 @@
-#!/bin/bash - sha-bang is needed to have syntax highlighting in various editors
+#!/usr/bin/env bash  # - sha-bang is needed to have syntax highlighting in various editors
 
 # __force_gnu_environment='N'
 __os_runtime__is_gnu_compatible='N'
@@ -29,12 +29,13 @@ fi
 export __os_runtime__is_gnu_compatible
 
 
-## Speak English to me, please, due to your Russian is awful.
-#export LANG="en_US.UTF-8"
+## Speak English to me, please
+# export LANG="en_US.UTF-8"
+
 ##  For apache testconfig to operate properly
-    export APACHE_USER="www-data"
-##  DISPLAY setting:
-#    export DISPLAY="10.3.7.45:0.0"
+#    export APACHE_USER="www-data"
+##  DISPLAY setting. Reckon with e.g. Midnight Commander resecting the variable.
+#    export DISPLAY=
 
 
 
