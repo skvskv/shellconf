@@ -1,5 +1,34 @@
 #!/bin/bash - sha-bang is needed to have syntax highlighting in various editors
 
+# __force_gnu_environment='N'
+__os_runtime__is_gnu_compatible='N'
+case "${OSTYPE}" in
+    *-gnu|msys|cygwin)
+        echo 'Yay, its GNU!'
+		__os_runtime__is_gnu_compatible='Y'
+        ;;
+    darwin*|*bsd*)
+        echo 'BSD or Mac OS! :('
+        ;;
+    win*)
+        echo 'Eh... windows?'
+        ;;
+    "")
+        echo 'Eh? Eww!'
+        ;;
+    *)
+        echo '?'
+        ;;
+esac
+
+if [ z${_force_gnu_environment} = z'Y' ]
+then
+    __os_runtime__is_gnu_compatible='Y'
+fi
+
+export __os_runtime__is_gnu_compatible
+
+
 ## Speak English to me, please, due to your Russian is awful.
 #export LANG="en_US.UTF-8"
 ##  For apache testconfig to operate properly
@@ -38,10 +67,16 @@ PATH="$PATH:/opt/mule-standalone-3.5.0/bin"
 
 alias getip="dig +short "
 alias getn="dig +short -x "
-# unalias ls
-alias ls="ls --color=auto --show-control-chars --group-directories-first"
 alias vir='vi -R'
-#alias mce='mcedit '
+# unalias ls
+if [ z"${__os_runtime__is_gnu_compatible}" = z'Y' ]
+then
+    alias ls="ls --color=auto --show-control-chars --group-directories-first"
+else
+    alias ls="ls -Gw"
+fi
+
+
 #alias mysql='mysql --user=root --password=10eg2kpIFZ '
 
 ## Pretty-printing JSON 
