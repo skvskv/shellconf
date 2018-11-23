@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function get(){
 	wget -c -t 0 -T 10 "$@"

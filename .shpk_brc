@@ -1,4 +1,4 @@
-#!/bin/bash - sha-bang is needed to have syntax highlighting in various editors
+#!/usr/bin/env bash  # - sha-bang is needed to have syntax highlighting in various editors
 
 # __force_gnu_environment='N'
 __os_runtime__is_gnu_compatible='N'
@@ -29,33 +29,32 @@ fi
 export __os_runtime__is_gnu_compatible
 
 
-## Speak English to me, please, due to your Russian is awful.
-#export LANG="en_US.UTF-8"
+## Speak English to me, please
+# export LANG="en_US.UTF-8"
+
 ##  For apache testconfig to operate properly
-    export APACHE_USER="www-data"
-##  DISPLAY setting:
-#    export DISPLAY="10.3.7.45:0.0"
+#    export APACHE_USER="www-data"
+##  DISPLAY setting. Reckon with e.g. Midnight Commander resecting the variable.
+#    export DISPLAY=
 
 
-
-## Legacy inclusion, might come in hand as concept
-    if [ -r ${HOME}/.server_aliases_ixtens ]; then
-	. ${HOME}/.server_aliases_ixtens
+## set PATH so it includes user's private bin (if it exists)
+    if [ -d "$HOME/bin" ] 
+    then
+	    PATH="$HOME/bin:$PATH"
     fi
-PATH="$PATH:/opt/mule-standalone-3.5.0/bin"
-## set PATH so it includes user's private bin and (so forth) if it exists
-    if [ -d "$HOME/bin" ] ; then
-	PATH="$HOME/bin:$PATH"
-    fi
-    if [ -d "$HOME/go/bin" ] ; then
-	PATH="$HOME/go/bin:$PATH"
+    if [ -d "$HOME/go/bin" ] 
+    then
+	    PATH="$HOME/go/bin:$PATH"
     fi
 ## Please let me use my local scripts or otherwise executable files
-    if [ -d "$HOME/.executables/" ] ; then
+    if [ -d "$HOME/.executables/" ] 
+    then
         PATH="$HOME/.executables/:$PATH"
     fi
 ## ...and functions, also
-    if test -d "${HOME}/.functions"; then
+    if test -d "${HOME}/.functions"
+    then
     	for i in ${HOME}/.functions/*.func; do
     		. ${i}
     	done

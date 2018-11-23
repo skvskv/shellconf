@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 
 # -H 'Cookie: XDEBUG_SESSION=ksh_SPORTLEVEL'

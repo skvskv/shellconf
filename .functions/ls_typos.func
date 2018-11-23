@@ -1,4 +1,4 @@
-#!/bin/bash            # sha-bang is needed to have syntax highlighting in various editors
+#!/usr/bin/env bash            # sha-bang is needed to have syntax highlighting in various editors
 
 
 function ls-la(){
