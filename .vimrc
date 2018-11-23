@@ -1,6 +1,13 @@
 set ci
 
-" set nu
+" === Tabs and Indentation (and Autoindentation)
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+"     F3: Toggle Autoindentation for the sake of pasting raw lines
+set pastetoggle=<F3>
+
 
 nmap \l :setlocal number!<CR>
 nmap \o :set paste!<CR>
