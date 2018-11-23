@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function empty(){
 	[ -w "$1" ] && cat /dev/null > "$1"

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 function where(){
 	find . -type f -exec grep -iEC 2 "$1" '{}' \; -print
