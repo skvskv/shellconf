@@ -4,11 +4,17 @@
 # https://github.com/scop/bash-completion/blob/master/README.md
 #
 
-if [ -d ~/bash_completion.d ]
+if [ -d ${HOME}/bash_completion.d ]
 then
-	for fn in ~/bash_completion.d/*.bash
-	do
-		. "${fn}" 
-	done	
+    completion_files=(${HOME}/bash_completion.d/*.bash)
+
+    if [ ${HOME}'/bash_completion.d/*.bash' != ${completion_files[0]} ]
+    then
+        for fn in "${completion_files[@]}"
+        do
+            . "${fn}"
+        done
+    fi
+
 fi
 
