@@ -13,9 +13,14 @@ fi
 
 php composer-setup.php --quiet --install-dir=.
 RESULT=$?
+
+if [ ${RESULT} -eq 0 ]
+    sudo install -D -T -o bin -g bin -m 0555 ./composer.phar /usr/local/bin/composer
+    sudo ln -s ./composer /usr/local/bin/cposer
+    rm composer.phar
+fi
+
 rm composer-setup.php
-sudo install -D -T -o bin -g bin -m 0555 ./composer.phar /usr/local/bin/composer
-sudo ln -s ./composer /usr/local/bin/cposer 
-rm composer.phar
+
 exit $RESULT
 
