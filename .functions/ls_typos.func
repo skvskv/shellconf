@@ -9,6 +9,30 @@ function ls-(){
 	ls -"$@"
 }
 
+function llss(){
+    ls "$@"
+}
+
+function lss(){
+    ls "$@"
+}
+
+function lls(){
+    ls "$@"
+}
+
+function ssll(){
+	ls "$@"
+}
+
+function ssl(){
+	ls "$@"
+}
+
+function sll(){
+	ls "$@"
+}
+
 function sl(){
 	ls "$@"
 }
