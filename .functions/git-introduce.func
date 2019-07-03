@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+
+
+function git-introduce-myself() {
+    git_email="$1"
+    git_name="$2"
+
+    if [ \( -z "${git_name}"  \) -o \( -z "${git_email}" \) ]
+    then
+        git-introduce-myself-help "$0"
+    fi
+
+    git config user.name "${git_name}"
+    git config user.email "${git_email}"
+}
+
+function git-introduce-myself-help() {
+    function_name=''
+    if [ 'z' = 'z'"$1" ] 
+    then
+        function_name='git-introduce-self'
+    else
+        function_name="$1"
+    fi
+
+    echo "Usage: "
+    echo "    $1 'User Name' 'email@address'"
+}
+
+
