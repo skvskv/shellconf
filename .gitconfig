@@ -1,0 +1,7 @@
+[alias] 
+    au = update-index --assume-unchanged
+    nau = update-index --no-assume-unchanged
+    lsau = !git ls-files -v | grep "^[[:lower:]]"
+
+
+
