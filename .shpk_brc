@@ -122,5 +122,6 @@ then
   alias gbl='git branch --list '
   alias gbla='git branch --list -a '
   alias gblr='git branch --list -r '
-  alias git-autopush='$(git push 2>&1 | grep "git push")'
+  alias git-autopush='git rev-parse --abbrev-ref --symbolic-full-name @{u} || $(git push 2>&1 | grep "git push")'  # git rev-parse --abbrev-ref --symbolic-full-name @{u} returns 128 provided there is no remote branch tracking; returns 0 otherwise and prints remote branch name
+
 fi
