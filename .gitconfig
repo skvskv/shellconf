@@ -3,5 +3,44 @@
     nau = update-index --no-assume-unchanged
     lsau = !git ls-files -v | grep "^[[:lower:]]"
 
+[user]
+        email = here@be.my.email
+        name = Konstantin Shpolvind
+
+[core]
+    # Never turn autocrlf on, it causes nothing but headaches and sorrows
+    # https://stackoverflow.com/questions/2332349/best-practices-for-cross-platform-git-config/2361321#2361321
+    # https://markentier.tech/posts/2021/10/autocrlf-true-considered-harmful/
+    autocrlf = false 
+    eol = lf
+
+[credential]
+    # Shall you ever need (God forbid!) to work with a repo using only password-based auth
+    #helper=store
 
 
+## With the following configuration for the git attribute filter driver 
+## one can have automated conversion between tabs (locally) & spaces (in repo) 
+## with a simpe edit to .gitattributes
+##      *.js  filter=tabspace4
+##      *.html  filter=tabspace4
+##      *.css  filter=tabspace4
+##      *.json  filter=tabspace4
+##
+## See more at https://git-scm.com/docs/gitattributes#_filter
+##
+[filter "tabspace8"]
+    smudge = unexpand --tabs=8 --first-only
+    clean = expand --tabs=8 --initial
+[filter "tabspace4"]
+    smudge = unexpand --tabs=4 --first-only
+    clean = expand --tabs=4 --initial
+[filter "tabspace2"]
+    smudge = unexpand --tabs=2 --first-only
+    clean = expand --tabs=2 --initial
+# Of course this way you can do reverse conversion, or even convert between 2sp and 4sp indentation
+
+
+# Shall you ever need a shortcut, it works somewhat like this, I figure
+#[url "acme.somedomain.org:lisasimpson/"]
+#    insteadOf=acme:
