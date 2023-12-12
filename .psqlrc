@@ -1,0 +1,15 @@
+# https://thoughtbot.com/blog/an-explained-psqlrc, https://github.com/thoughtbot/dotfiles/blob/main/gitconfig
+
+\set QUIET 1
+\pset null '(null)'
+\pset pager on
+\set ON_ERROR_ROLLBACK interactive
+\set COMP_KEYWORD_CASE upper # preserve-upper
+\set HISTCONTROL ignoredups
+\set HISTFILE ~/.psql_history- :USER - :HOST - :PORT - :DBNAME
+\set PROMPT1 '%[%033[1m%]%M %n@%/%R%[%033[0m%]%# '
+\set PROMPT2 '[more] %R > '
+\timing
+\x auto
+\unset QUIET
+
