@@ -18,7 +18,6 @@ set smartcase
 set hlsearch
 nmap \q :nohlsearch<CR>
 
-execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
