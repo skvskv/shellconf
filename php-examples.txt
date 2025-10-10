@@ -1,0 +1,19 @@
+sudo -l 
+sudo update-alternatives php
+
+
+
+
+git clone | composer init + git init
+
+
+
+# always install the latest version of PHPUnit that backward is compatible with PHPUnit 12.4; install PHPStan too
+
+composer require -oa --sort-packages --dev -Wm 'phpstan/phpstan:^2.1'   'phpstan/extension-installer'   'phpstan/phpdoc-parser'
+composer require -oa --sort-packages --dev -Wm 'phpunit/phpunit: ^12.4'   'phpstan/phpstan-phpunit'
+# composer require -oa --sort-packages --dev -Wm 'larastan/larastan' 'phpstan/phpstan-symfony' 'symfony/type-info' 'phpstan/phpstan-doctrine' 'szepeviktor/phpstan-wordpress' 'phpstan/phpstan-webmozart-assert'
+# composer require -oa --sort-packages --dev -Wm 'phpstan/phpstan-deprecation-rules' 'phpstan/phpstan-strict-rules' 'ergebnis/phpstan-rules'
+
+
+
